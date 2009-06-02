@@ -7,7 +7,7 @@
 
 # Change the variables below to fit your computer/backup
 
-COMPUTER=intranet.networktext.com                               # name of this computer
+COMPUTER=this.box.tatango.com                               # name of this computer
 DIRECTORIES="/home_ldap"                        # directoris to backup
 BACKUPDIR=/backup/homes                         # where to store the backups
 TIMEDIR=/backup/homes/last-full                 # where to store time of full backup
@@ -16,7 +16,7 @@ TAROPTS="-czf"
 TAREXT="tgz"
 RSYNC=/usr/bin/rsync
 DORSYNC=true    # set to false for it to not rsync
-RSYNC_TO="backup@q1.networktext.com:homes_from_intranet"
+RSYNC_TO="backup@backup_host.tatango.com:backup_dir"
 
 # You should not have to change anything below here
 
