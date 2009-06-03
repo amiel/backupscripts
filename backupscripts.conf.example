@@ -1,0 +1,12 @@
+# Change the variables below to fit your computer/backup
+
+COMPUTER=name.this.host.com					# name of this computer
+DIRECTORIES="/home --exclude home/backup"	# directories to backup
+BACKUPDIR=/backup							# where to store the backups
+TIMEDIR=/backup/last-full					# where to store time of full backup
+TAR=/bin/tar								# locaction of tar
+TAROPTS="-czf"								# options for tar
+TAREXT="tgz"								# extention of tarred file (change this if you change compression options in TAROPTS)
+RSYNC=/usr/bin/rsync						# location of rsync
+DORSYNC=true								# set to false for it to not rsync
+RSYNC_TO="backup@host:backup_location"		# username@host:location to rsync the datas to. separate multiple hosts with a space, spaces are not allowed in directory names
