@@ -61,6 +61,8 @@ for file in $INSTALL_FILES; do
 	cp $file $DESTINATION
 done
 
+chmod 755 "$DESTINATION/backup.sh"
+
 
 installed_conf_file="$DESTINATION/backupscripts.conf"
 if [[ -e $installed_conf_file ]]; then
