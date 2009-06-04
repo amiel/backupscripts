@@ -40,6 +40,14 @@ update_backup_date() {
 
 
 
+setup_directories() {
+	[ -d $BACKUPDIR ] || mkdir -p $BACKUPDIR
+	[ -d $TIMEDIR ] || mkdir -p $TIMEDIR
+}
+
+
+setup_directories
+
 
 
 # Monthly full backup
