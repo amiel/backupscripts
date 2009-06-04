@@ -12,9 +12,9 @@ source $(conf_file)
 rsync_file() {
 	if $DORSYNC; then
 		for r in ${RSYNC_TO:?no rsync to set, please set RSYNC_TO in conf}; do
-			ebegin "rysincing $1 to $r"
+			vebegin "rysincing $1 to $r"
 			$RSYNC -t -W ${1:?file not set} $r
-			eend $?
+			veend $?
 		done
 	else
 		vewarn "not running rsync because DORSYNC is false"

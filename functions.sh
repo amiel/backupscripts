@@ -134,7 +134,6 @@ ewarn() {
 	fi
 
 	local name="rc-scripts"
-	[[ $0 != "/sbin/runscript.sh" ]] && name="${0##*/}"
 	# Log warnings to system log
 	esyslog "daemon.warning" "${name}" "$*"
 
@@ -304,6 +303,9 @@ fi
 			# Lastly check if the user disabled it with --nocolor argument
 			--nocolor|-nc)
 				RC_NOCOLOR="yes"
+				;;
+			-v)
+				RC_VERBOSE="yes"
 				;;
 		esac
 	done

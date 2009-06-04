@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # full and incremental backup script
 # created 07 February 2000
 # Based on a script by Daniel O'Callaghan <danny@freebsd.org>
@@ -20,37 +20,54 @@ DM=`date +%d%b`		# Date and Month e.g. 27Sep
 # The rest of the time an incremental backup is made. Each incremental
 # backup overwrites last weeks incremental backup of the same name.
 
-
-# $1 is what to put in the filename
-# $2 are extra TAR options
-do_tar(){
-	local file="$BACKUPDIR/$COMPUTER-$1.$TAREXT"
-	$TAR $2 $TAROPTS $file $DIRECTORIES
-	echo $file
+generate_filename() {
+	echo "$BACKUPDIR/$BACKUP_NAME-$1.$TAREXT"
 }
 
-update_backup_date(){
+# $1 is the filename
+# $2 are extra TAR options
+do_tar() {
+	vebegin "starting backup of $DIRECTORIES"
+	$TAR $2 $TAROPTS $1 $DIRECTORIES
+	veend $?
+}
+
+update_backup_date() {
 	# Update full backup date
 	local NOW=`date +%d-%b`
-	echo $NOW > $TIMEDIR/$COMPUTER-full-date
+	echo $NOW > $TIMEDIR/$BACKUP_NAME-full-date
 }
+
+
+
+
 
 # Monthly full backup
 if [ $DOM = "01" ]; then
-	local file=$(do_tar $DM)
+	veinfo "Monthly perminant full backup"
+	
+	update_backup_date
+	file=$(generate_filename $DM)
+	do_tar $file
 	rsync_file $file
 fi
 
-if [ $DOW = "Sun" ]; then # Weekly full backup
-
+if [ $DOW = "Sun" ]; then # Weekly full backup - overwrite last weeks
+	veinfo "Sunday full backup"
+	
 	update_backup_date
-	local file=$(do_tar $DOW)
+	file=$(generate_filename $DOW)
+	do_tar $file
 	rsync_file $file
 
 else # Make incremental backup - overwrite last weeks
+	veinfo "Daily incremental backup"
+	einfo "DAILING BACKUP"
+	
 	# if there is no backup date, set it to now so we can move on with our lives
-	[ -f $TIMEDIR/$COMPUTER-full-date ] || update_backup_date
+	[ -f $TIMEDIR/$BACKUP_NAME-full-date ] || update_backup_date
 	
 	# Get date of last full backup
-	local file=$(do_tar $DOW "--newer `cat $TIMEDIR/$COMPUTER-full-date`")
+	file=$(generate_filename $DOW)
+	do_tar $file "--newer `cat $TIMEDIR/$BACKUP_NAME-full-date`"
 fi

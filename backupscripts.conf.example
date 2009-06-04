@@ -1,9 +1,9 @@
 # Change the variables below to fit your computer/backup
 
-COMPUTER=name.this.host.com					# name of this computer
+BACKUP_NAME=name.this.host.com				# name of this computer
 DIRECTORIES="/home --exclude home/backup"	# directories to backup
-BACKUPDIR=/backup							# where to store the backups
-TIMEDIR=/backup/last-full					# where to store time of full backup
+BACKUPDIR=/backup							# where to store the backups, this must already exist
+TIMEDIR="$BACKUPDIR/last-full"				# where to store time of full backup
 TAR=/bin/tar								# locaction of tar
 TAROPTS="-czf"								# options for tar
 TAREXT="tgz"								# extention of tarred file (change this if you change compression options in TAROPTS)
