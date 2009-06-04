@@ -30,10 +30,6 @@ RC_ENDCOL="yes"
 
 BACKUPSCRIPTS_DIR="/etc/backupscripts"
 
-conf_file() {
-	local f=
-
-}
 
 include_file() {
 	if [[ -f "$1" ]]; then
@@ -304,7 +300,7 @@ fi
 			--nocolor|-nc)
 				RC_NOCOLOR="yes"
 				;;
-			-v)
+			-v|--verbose)
 				RC_VERBOSE="yes"
 				;;
 		esac

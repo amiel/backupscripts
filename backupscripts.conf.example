@@ -10,3 +10,4 @@ TAREXT="tgz"								# extention of tarred file (change this if you change compre
 RSYNC=/usr/bin/rsync						# location of rsync
 DORSYNC=true								# set to false for it to not rsync
 RSYNC_TO="backup@host:backup_location"		# username@host:location to rsync the datas to. separate multiple hosts with a space, spaces are not allowed in directory names
+CONFIGURED=false							# set to true to allow backup.sh to run

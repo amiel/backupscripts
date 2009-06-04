@@ -11,6 +11,14 @@ source $(conf_file)
 source $(include_file rsync_functions.sh)
 
 
+if [[ -z $CONFIGURED ]] || ! $CONFIGURED; then
+	eerror "Please configure your backupscripts.conf file at $(conf_file)"
+	exit 1
+fi
+
+
+
+
 DOW=`date +%a`		# Day of the week e.g. Mon
 DOM=`date +%d`		# Date of the Month e.g. 27
 DM=`date +%d%b`		# Date and Month e.g. 27Sep
