@@ -78,7 +78,6 @@ if [ $DOW = "Sun" ]; then # Weekly full backup - overwrite last weeks
 
 else # Make incremental backup - overwrite last weeks
 	veinfo "Daily incremental backup"
-	einfo "DAILING BACKUP"
 	
 	# if there is no backup date, set it to now so we can move on with our lives
 	[ -f $TIMEDIR/$BACKUP_NAME-full-date ] || update_backup_date

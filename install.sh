@@ -85,9 +85,9 @@ fi
 
 cron_script="$CRONDIR/backup.sh"
 
-if [[ -f $cron_script ]]; then
-	ewarn "$cron_script is already a file, backing up to $cron_script.install_backup"
-	mv -i $cron_script $cron_script.backup
+if [[ -f $cron_script && ! -h $cron_script ]]; then
+	ewarn "$cron_script is already a file, backing up to ~/backup.sh.install_backup"
+	mv -i $cron_script ~/backup.sh.install_backup
 fi
 
 if [[ -h $cron_script ]]; then
@@ -95,4 +95,4 @@ if [[ -h $cron_script ]]; then
 fi
 
 einfo "installing a symlink from $cron_script to backup.sh"
-ln -s "$DESTINATION/backup.sh" $cron_script
+ln -sf "$DESTINATION/backup.sh" $cron_script
