@@ -5,8 +5,8 @@
 # and modified by Gerhard Mourani <gmourani@videotron.ca>
 # and modified again (and very heavily) by Amiel Martin <amiel.martin@gmail.com>
 
-FUNCTIONS="$(if [[ -f "$f" ]];then echo "$f"; else echo "/etc/backupscripts/$f";fi)"
-source functions.sh
+FUNCTIONS="$(f=functions.sh; if [[ -f "$f" ]];then echo "$f"; else echo "/etc/backupscripts/$f";fi)"
+source $FUNCTIONS
 source $(conf_file)
 source $(include_file rsync_functions.sh)
 

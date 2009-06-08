@@ -3,11 +3,6 @@
 # Amiel Martin <amiel.martin@gmail.com> 2009-06-03
 
 
-FUNCTIONS="$(if [[ -f "$f" ]];then echo "$f"; else echo "/etc/backupscripts/$f";fi)"
-source functions.sh
-source $(conf_file)
-
-
 
 rsync_file() {
 	if $DORSYNC; then

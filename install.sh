@@ -4,8 +4,8 @@
 #
 
 
-FUNCTIONS="$(if [[ -f "$f" ]];then echo "$f"; else echo "/etc/backupscripts/$f";fi)"
-source functions.sh
+FUNCTIONS="$(f=functions.sh; if [[ -f "$f" ]];then echo "$f"; else echo "/etc/backupscripts/$f";fi)"
+source $FUNCTIONS
 
 DESTINATION="/etc/backupscripts"
 INSTALL_FILES="backupscripts.conf.example functions.sh backup.sh rsync_functions.sh"
